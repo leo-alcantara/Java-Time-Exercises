@@ -1,9 +1,6 @@
 package se.lexicon;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
-import java.time.Period;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.SortedMap;
@@ -81,8 +78,10 @@ public class LocalDatePractice {
 
         //Exercise 11
         //Create a LocalTime object from a String using the .parse() method.
-        LocalTime inTenMinutes = currentTime.plusMinutes(10);
-        System.out.println(inTenMinutes);
+        LocalTime time10 = LocalTime.parse("10:00");
+        System.out.println(time10);
+        //LocalTime inTenMinutes = currentTime.plusMinutes(10);
+        //System.out.println(inTenMinutes);
 
 
         //Exercise 12
@@ -91,19 +90,34 @@ public class LocalDatePractice {
 
         //Exercise 13
         //Create a LocalDateTime with the date and time components as: date: 2018-04-05, time: 10.00.
+        LocalDateTime newDate = LocalDateTime.of(2018, 4, 5,10, 00);
+        System.out.println("Date: " + newDate.getYear() + "-" + newDate.getMonthValue() + "-" + newDate.getDayOfMonth()
+        + ". Time: " + newDate.getHour() + ":" + newDate.getMinute());
+        System.out.println(newDate);
 
 
         //Exercise 14
-        //Using DateTimeFormatter format the LocalDateTime object from exercise 11 to a String that should look tile this: torsdag 5 april 10:00
-
+        //Using DateTimeFormatter format the LocalDateTime object from exercise 11 to a String that should look tile this: Thursday 5 april 10:00
+        String custom =newDate.format(DateTimeFormatter.ofPattern("eeee dd MMMM hh:mm"));
+        System.out.println(custom);
 
         //Exercise 15
         //Create a LocalDateTime object by combining LocalDate object and LocalTime object.
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        System.out.println(dateTime);
 
 
         //Exercise 16
         //Create a LocalDateTime object. Then get the LocalDate and LocalTime components into separate objects of respective types from the LocalDateTime object.
+        LocalDateTime dateAndTime = LocalDateTime.of(2021,6,28,15,00);
 
+        LocalDate day = dateAndTime.toLocalDate();
+        System.out.println(day);
+        LocalTime hour = dateAndTime.toLocalTime();
+        System.out.println(hour);
+        System.out.println(day + "T" + hour);
 
         //Extra assignment
         //Create your own calendar for the year 2018.
